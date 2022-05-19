@@ -1,0 +1,36 @@
+app:
+  name: transcoder
+  run_mode: debug  # debug or release
+  ip: 127.0.0.1 # 服务所在IP
+  port: 8081
+  snowflake_start_time: 2021-11-15
+  snowflake_machine_id: 1
+  output_dir: data  # 输出文件路径
+  request_token_timeout: 5  # 请求超时时间，默认5s：即5s之前的请求不处理
+  api_secret_key: 12345 # 和咪咕约定的接口密钥
+  license_file_dir: objs    # license文件所在目录
+  node_concurrent_job: 2    # 作为节点时候，并发任务数量；作为集群时候参数无效
+  slave_of:                 # 作为节点时候，所属集群的ip:port; 作为集群时候留空
+  oss_download_url:         # oss下载地址, 仅用于测试环境下，正式环境留空
+  oss_video_upload_url:     # 转码视频成功，oss上传地址, 仅用于测试环境下，正式环境留空
+log:
+  level: debug
+  filename: app.log
+  max_size: 50
+  max_age: 30
+  max_backup: 7
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: chnvideo2012
+  dbname: bravo_transcoder
+  max_open_conn: 30
+  max_idle_conn: 10
+redis:
+  master_name: master
+  host:
+    - 127.0.0.1:6379
+  password:
+  db: 0
+  pool_size: 100
