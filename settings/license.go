@@ -10,12 +10,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"myGin/pkg/utils"
 	"os/exec"
 	"path/filepath"
 	"time"
 
 	"github.com/pkg/errors"
+	"myGin/pkg/utils"
 )
 
 const (
@@ -115,7 +115,3 @@ func (l *license) Enable() bool {
 	}
 	return utils.Exist(licenseFilePath)
 }
-
-
-
-

@@ -1,6 +1,7 @@
 package global
 
 const (
-	DebugModel = "debug"
+	ReleaseModel   = "release"
+	DebugModel     = "debug"
 	InnerTestModel = "inner_test"
 )

@@ -3,8 +3,8 @@ package inits
 import (
 	"fmt"
 	"go.uber.org/zap"
-	"myGin/dao/mysql"
-	"myGin/dao/redis"
+	"myGin/internal/dao/mysql"
+	"myGin/internal/dao/redis"
 	"myGin/logger"
 	"myGin/pkg/snowflake"
 	"myGin/settings"

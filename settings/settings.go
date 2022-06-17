@@ -9,12 +9,13 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"time"
 )
 
 var (
 	FFmpeg, FFprobe string
 	LocalIpPort     string // 本机的ip:port
-	VerifyLicense string // 验证license的工具
+	VerifyLicense   string // 验证license的工具
 )
 
 type appConfig struct {
@@ -61,12 +62,18 @@ type redisConfig struct {
 	PoolSize   int      `mapstructure:"pool_size"`
 }
 
+type jwtSetting struct {
+	Enable bool          `mapstructure:"enable"`
+	Expire time.Duration `mapstructure:"expire"`
+}
+
 var (
-	AppCfg   = new(appConfig)
-	LogCfg   = new(logConfig)
-	MysqlCfg = new(mysqlConfig)
-	RedisCfg = new(redisConfig)
-	//LicenseCfg = NewTesterLicense()
+	AppCfg     = new(appConfig)
+	LogCfg     = new(logConfig)
+	MysqlCfg   = new(mysqlConfig)
+	RedisCfg   = new(redisConfig)
+	JwtCfg     = new(jwtSetting)
+	LicenseCfg = NewTesterLicense()
 )
 
 func Init(cfgPath string) error {
@@ -99,6 +106,10 @@ func Init(cfgPath string) error {
 	}
 
 	if err := readSection("redis", RedisCfg); err != nil {
+		return errors.Wrapf(err, "read redis config failed")
+	}
+
+	if err := readSection("jwt", JwtCfg); err != nil {
 		return errors.Wrapf(err, "read redis config failed")
 	}
 

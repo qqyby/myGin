@@ -2,8 +2,8 @@ package redis
 
 import (
 	"context"
-	"time"
 	"github.com/go-redis/redis/v8"
+	"time"
 )
 
 var rdb *redis.Client
